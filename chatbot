@@ -1,0 +1,35 @@
+import pandas as pd
+
+df = pd.read_csv(r"C:\Users\dell\bcgx\microsoft_3yr_financials.csv")
+latest = df.iloc[-1]
+previous = df.iloc[-2]
+total_revenue = latest["Total Revenue (USD millions)"]
+cash = latest["Cash Flow from Operations (USD millions)"]
+
+net_change_amount = latest["Net Income (USD millions)"] - previous["Net Income (USD millions)"]
+net_change_percent = (net_change_amount / previous["Net Income (USD millions)"]) * 100
+
+Canned_Responses = {
+    "what is the total revenue?": 
+        f"Microsoft's total revenue in {latest['Fiscal Year']} was ${total_revenue:,.0f}.",
+    "how has net income changed over the last year?":
+        f"Net income {'increased' if net_change_amount>0 else 'decreased'}"
+        f"by ${abs(net_change_amount):,.0f}({net_change_percent:.1f}%).",
+    "what is the current cash balance?":
+        f"Microsoft's cash balance in {latest['Fiscal Year']} is ${cash:,.0f}."
+}
+FALLBACK = "Sorry, I can answer only predefined questions."
+def chatbot(query):
+    normalized = query.strip().lower()
+    return Canned_Responses.get(normalized, FALLBACK)
+
+while True:
+    q = input("Ask me something: ")
+    if q.lower() == "exit":
+        break
+    print("Chatbot:", chatbot(q))
+
+
+
+
+
