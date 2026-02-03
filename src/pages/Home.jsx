@@ -9,11 +9,14 @@ import Contact from "../components/Contact.jsx";
 import Footer from "../components/Footer.jsx";
 import ProductDetailsModal from "../components/ProductDetailsModal.jsx";
 import CartDrawer from "../components/CartDrawer.jsx";
+import Payment from "../components/Payment.jsx";
+import OrderConfirmation from "../components/OrderConfirmation.jsx";
 
 const Home = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [cartItems, setCartItems] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isOrderConfirmed, setIsOrderConfirmed] = useState(false);
 
   const cartCount = useMemo(
     () => cartItems.reduce((total, item) => total + item.quantity, 0),
@@ -32,6 +35,7 @@ const Home = () => {
     });
     setSelectedProduct(null);
     setIsCartOpen(true);
+    setIsOrderConfirmed(false);
   };
 
   const handleIncrease = (id) => {
@@ -54,6 +58,12 @@ const Home = () => {
     setCartItems((prev) => prev.filter((item) => item.id !== id));
   };
 
+  const handleConfirmOrder = () => {
+    if (cartItems.length > 0) {
+      setIsOrderConfirmed(true);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white text-slate-900">
       <Navbar cartCount={cartCount} onCartClick={() => setIsCartOpen(true)} />
@@ -64,6 +74,8 @@ const Home = () => {
         <Materials />
         <About />
         <Contact />
+        <Payment cartItems={cartItems} onConfirmOrder={handleConfirmOrder} />
+        <OrderConfirmation isConfirmed={isOrderConfirmed} />
       </main>
       <Footer />
       <ProductDetailsModal

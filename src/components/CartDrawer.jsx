@@ -77,13 +77,20 @@ const CartDrawer = ({ isOpen, onClose, cartItems, onIncrease, onDecrease, onRemo
               </div>
             ))}
           </div>
-          <div className="border-t border-forest-100 p-6">
+          <div className="border-t border-forest-100 p-6 space-y-3">
             <a
-              href="#contact"
+              href="#payment"
               onClick={onClose}
               className="block rounded-full bg-forest-600 px-6 py-3 text-center text-sm font-semibold text-white shadow-soft transition hover:bg-forest-700"
             >
-              Request Quote for Cart
+              Proceed to Payment
+            </a>
+            <a
+              href="#contact"
+              onClick={onClose}
+              className="block rounded-full border border-forest-200 px-6 py-3 text-center text-sm font-semibold text-forest-700 transition hover:border-forest-500"
+            >
+              Request Quote Instead
             </a>
           </div>
         </div>
