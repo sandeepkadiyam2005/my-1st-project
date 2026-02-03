@@ -36,6 +36,16 @@ const About = () => {
               R&amp;D team for innovative compostable formulations.
             </li>
           </ul>
+          <div className="mt-8 rounded-2xl border border-forest-200 bg-white p-4">
+            <p className="text-sm font-semibold text-forest-800">
+              Backend work through company side
+            </p>
+            <p className="mt-2 text-sm text-slate-600">
+              Every request moves through our in-house planning, sourcing, production,
+              quality assurance, and dispatch teams to ensure consistent delivery
+              timelines and compliance documentation.
+            </p>
+          </div>
           <div className="mt-8 rounded-2xl bg-white p-4 text-sm text-forest-800">
             Certified one-stop partner for brands transitioning to sustainable packaging.
           </div>
