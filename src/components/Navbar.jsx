@@ -8,7 +8,7 @@ const links = [
   { label: "Contact", href: "#contact" }
 ];
 
-const Navbar = () => {
+const Navbar = ({ cartCount, onCartClick }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -44,6 +44,18 @@ const Navbar = () => {
               {link.label}
             </a>
           ))}
+          <button
+            type="button"
+            onClick={onCartClick}
+            className="relative rounded-full border border-forest-200 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-forest-700 transition hover:border-forest-500"
+          >
+            Cart
+            {cartCount > 0 && (
+              <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-forest-600 text-[10px] font-semibold text-white">
+                {cartCount}
+              </span>
+            )}
+          </button>
         </div>
       </nav>
       {isOpen && (
@@ -59,6 +71,16 @@ const Navbar = () => {
                 {link.label}
               </a>
             ))}
+            <button
+              type="button"
+              onClick={() => {
+                setIsOpen(false);
+                onCartClick();
+              }}
+              className="w-fit rounded-full border border-forest-200 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-forest-700"
+            >
+              Cart ({cartCount})
+            </button>
           </div>
         </div>
       )}

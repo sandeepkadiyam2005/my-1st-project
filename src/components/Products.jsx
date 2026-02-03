@@ -1,7 +1,7 @@
 import products from "../data/products.js";
 import ProductCard from "./ProductCard.jsx";
 
-const Products = () => {
+const Products = ({ onViewProduct }) => {
   return (
     <section id="products" className="section-padding bg-forest-50/60">
       <div className="container-width">
@@ -20,7 +20,7 @@ const Products = () => {
         </div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard key={product.id} product={product} onView={onViewProduct} />
           ))}
         </div>
       </div>
